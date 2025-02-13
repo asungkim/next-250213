@@ -18,7 +18,7 @@ public class RsData<T> {
     private T data;
 
     public RsData(String code, String msg) {
-        this(code, msg, null);
+        this(code, msg, (T) new Empty());
     }
 
     @JsonIgnore
