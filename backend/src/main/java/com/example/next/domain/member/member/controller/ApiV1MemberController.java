@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import lombok.RequiredArgsConstructor;
+import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 
 @SecurityRequirement(name = "bearerAuth")
@@ -53,7 +54,9 @@ public class ApiV1MemberController {
                         String password) {
     }
 
-    record LoginResBody(MemberDto item, String apiKey, String accessToken) {
+    record LoginResBody(@NonNull MemberDto item,
+                        @NonNull String apiKey,
+                        @NonNull String accessToken) {
     }
 
     @Operation(summary = "로그인", description = "로그인 성공 시 ApiKey와 AccessToken 반환. 쿠키로도 반환")

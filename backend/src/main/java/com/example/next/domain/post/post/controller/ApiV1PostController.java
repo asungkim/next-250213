@@ -16,6 +16,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.lang.NonNull;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,7 +31,9 @@ public class ApiV1PostController {
     private final Rq rq;
     private final MemberService memberService;
 
-    record StatisticsResBody(long postCount, long postPublishedCount, long postListedCount) {
+    record StatisticsResBody(@NonNull long postCount,
+                             @NonNull long postPublishedCount,
+                             @NonNull long postListedCount) {
     }
 
     @Operation(summary = "통계 조회")
