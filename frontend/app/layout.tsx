@@ -24,10 +24,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-yellow-500 min-h-[100dvh] flex flex-col">
-        <header className="bg-sky-500 border-black border-4">헤더</header>
-        <div className="bg-blue-300 flex-grow">{children}</div>
-        <footer className="bg-green-200">푸터</footer>
+      <body className="min-h-[100dvh] flex flex-col">
+        <header className="flex gap-3">
+          <a href="/">메인</a>
+          <a href="/about">소개</a>
+        </header>
+        <div className="flex-grow">{children}</div>
+        <footer>푸터</footer>
       </body>
     </html>
   );
