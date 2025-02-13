@@ -25,7 +25,7 @@ public class DevInitData {
     ApplicationRunner devApplicationRunner() {
         return args -> {
             genApiJsonFile("http://localhost:8080/v3/api-docs/apiV1", "apiV1.json");
-            runCmdJsonToTs("npx --package typescript --package openapi-typescript --package punycode openapi-typescript apiV1.json -o ../frontend/src/lib/backend/apiV1schema.d.ts");
+            runCmdJsonToTs("npx --package typescript --package openapi-typescript --package punycode openapi-typescript apiV1.json -o ../frontend/src/lib/backend/apiV1/schema.d.ts");
         };
     }
 
