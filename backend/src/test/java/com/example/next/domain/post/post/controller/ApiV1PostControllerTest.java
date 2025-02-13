@@ -108,7 +108,7 @@ class ApiV1PostControllerTest {
                 .andExpect(jsonPath("$.data.currentPageNo").isNumber()) // curPage
                 .andExpect(jsonPath("$.data.totalPages").isNumber()); // totalPages
 
-        Page<Post> postPage = postService.getListedItems(1, 3, SearchKeywordType.TITLE, "");
+        Page<Post> postPage = postService.getListedItems(1, 3, SearchKeywordType.title, "");
 
         List<Post> posts = postPage.getContent();
         checkPosts(resultActions, posts);
@@ -145,7 +145,7 @@ class ApiV1PostControllerTest {
                 .andExpect(jsonPath("$.data.totalItems").value(7));
 
 
-        Page<Post> postPage = postService.getListedItems(page, pageSize, SearchKeywordType.TITLE, keyword);
+        Page<Post> postPage = postService.getListedItems(page, pageSize, SearchKeywordType.title, keyword);
         List<Post> posts = postPage.getContent();
         checkPosts(resultActions, posts);
     }
@@ -180,7 +180,7 @@ class ApiV1PostControllerTest {
                 .andExpect(jsonPath("$.data.totalItems").value(7));
 
 
-        Page<Post> postPage = postService.getListedItems(page, pageSize, SearchKeywordType.TITLE, keyword);
+        Page<Post> postPage = postService.getListedItems(page, pageSize, SearchKeywordType.title, keyword);
         List<Post> posts = postPage.getContent();
         checkPosts(resultActions, posts);
     }
@@ -216,7 +216,7 @@ class ApiV1PostControllerTest {
                 .andExpect(jsonPath("$.data.totalPages").value(2)) // totalPages
                 .andExpect(jsonPath("$.data.totalItems").value(4));
 
-        Page<Post> postPage = postService.getMines(loginedMember, page, pageSize, SearchKeywordType.TITLE, keyword);
+        Page<Post> postPage = postService.getMines(loginedMember, page, pageSize, SearchKeywordType.title, keyword);
         List<Post> posts = postPage.getContent();
         checkPosts(resultActions, posts);
     }

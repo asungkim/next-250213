@@ -89,7 +89,7 @@ public class ApiV1PostController {
             @RequestParam(defaultValue = "") String keyword) {
 
         Member actor = rq.getActor();
-        Page<Post> pagePost = postService.getMines(actor, page, pageSize, SearchKeywordType.TITLE, keyword);
+        Page<Post> pagePost = postService.getMines(actor, page, pageSize, keywordType, keyword);
 
         return new RsData<>(
                 "200-1",
