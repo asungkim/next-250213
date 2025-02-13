@@ -4,6 +4,7 @@ import com.example.next.domain.member.member.dto.MemberDto;
 import com.example.next.domain.member.member.entity.Member;
 import com.example.next.domain.member.member.service.MemberService;
 import com.example.next.global.Rq;
+import com.example.next.global.dto.Empty;
 import com.example.next.global.dto.RsData;
 import com.example.next.global.exception.ServiceException;
 import io.swagger.v3.oas.annotations.Operation;
@@ -87,7 +88,7 @@ public class ApiV1MemberController {
 
     @Operation(summary = "로그아웃", description = "로그아웃 시 쿠키 삭제")
     @DeleteMapping("/logout")
-    public RsData<Void> logout() {
+    public RsData<Empty> logout() {
         rq.removeCookie("accessToken");
         rq.removeCookie("apiKey");
 

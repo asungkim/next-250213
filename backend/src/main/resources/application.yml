@@ -3,6 +3,10 @@ server:
 
 
 spring:
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+
   output:
     ansi:
       enabled: always
