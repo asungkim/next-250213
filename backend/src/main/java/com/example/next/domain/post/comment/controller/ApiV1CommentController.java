@@ -12,6 +12,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.lang.NonNull;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,7 +46,7 @@ public class ApiV1CommentController {
                 .toList();
     }
 
-    record WriteReqBody(String content) {
+    record WriteReqBody(@NonNull String content) {
     }
 
     @PostMapping()
