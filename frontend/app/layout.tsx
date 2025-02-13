@@ -29,6 +29,7 @@ export default function RootLayout({
         <header className="flex gap-3">
           <Link href="/">메인</Link>
           <Link href="/about">소개</Link>
+          <Link href="/post/list">글 목록</Link>
         </header>
         <div className="flex-grow">{children}</div>
         <footer>푸터</footer>
