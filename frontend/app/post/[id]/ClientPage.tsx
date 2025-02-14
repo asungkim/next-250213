@@ -1,3 +1,5 @@
+"use client";
+
 import { components } from "@/src/lib/backend/apiV1/schema";
 
 export default function ClientPage({
