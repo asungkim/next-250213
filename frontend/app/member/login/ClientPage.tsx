@@ -1,11 +1,8 @@
 "use client";
 
 import client from "@/src/lib/client";
-import { useRouter } from "next/navigation";
 
 export default function ClientPage() {
-  const router = useRouter();
-
   async function login(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
@@ -27,7 +24,8 @@ export default function ClientPage() {
     }
 
     alert("로그인 성공하였습니다.");
-    router.push(`/post/list`);
+    // router.push(`/post/list`);
+    window.location.href = "/post/list";
   }
 
   return (

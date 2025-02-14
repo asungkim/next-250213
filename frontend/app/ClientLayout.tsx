@@ -3,7 +3,6 @@
 import { components } from "@/src/lib/backend/apiV1/schema";
 import client from "@/src/lib/client";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 export default function ClientLayout({
   children,
@@ -12,7 +11,6 @@ export default function ClientLayout({
   children: React.ReactNode;
   me: components["schemas"]["MemberDto"];
 }>) {
-  const router = useRouter();
   const isLogined = me.id !== 0;
 
   return (
@@ -37,7 +35,8 @@ export default function ClientLayout({
                   return;
                 }
 
-                router.push(`/post/list`);
+                // router.push(`/post/list`); // 브라우저 방식 x, next.js 방식
+                window.location.href = "/post/list";
               }}
             >
               로그아웃
