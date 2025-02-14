@@ -15,6 +15,7 @@ export default function ClientLayout({
           <Link href="/about">소개</Link>
           <Link href="/post/list">글 목록</Link>
           <Link href="/member/login">로그인</Link>
+          <Link href="/member/me">내 정보</Link>
         </header>
         <div className="flex-grow">{children}</div>
         <footer>푸터</footer>
