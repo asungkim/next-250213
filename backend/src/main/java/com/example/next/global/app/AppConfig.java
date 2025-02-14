@@ -16,7 +16,7 @@ public class AppConfig {
     public static ObjectMapper objectMapper;
 
     public static String getSiteFrontUrl() {
-        return "http://localhost:3030";
+        return "http://localhost:3000";
     }
 
     @Autowired
