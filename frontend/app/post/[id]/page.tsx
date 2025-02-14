@@ -24,7 +24,7 @@ export default async function Page({
   });
 
   if (response.error) {
-    return <div>에러가 발생했습니다.</div>;
+    return <div>{response.error.msg}</div>;
   }
 
   const rsData = response.data;
