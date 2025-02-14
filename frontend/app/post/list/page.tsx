@@ -1,47 +1,43 @@
 import { components, paths } from "@/src/lib/backend/apiV1/schema";
 import axios from "axios";
 import { SearchParams } from "next/dist/server/request/search-params";
+import Link from "next/link";
 import createClient from "openapi-fetch";
 
 const client = createClient<paths>({
   baseUrl: "http://localhost:8080",
 });
 
-// searParams 라는 객체가 있어 근데 searchParams의 구조는 {} 형태야
 export default async function Page({
   searchParams,
 }: {
   searchParams: {
     keywordType?: "title" | "content";
     keyword: string;
+    pageSize: number;
+    page: number;
   };
 }) {
-  const { keywordType = "title", keyword = "" } = await searchParams;
+  const {
+    keywordType = "title",
+    keyword = "",
+    pageSize = 10,
+    page = 1,
+  } = await searchParams;
 
   const response = await client.GET("/api/v1/posts", {
     params: {
       query: {
-        keyword: keyword,
-        keywordType: keywordType,
+        keyword,
+        keywordType,
+        pageSize,
+        page,
       },
     },
   });
 
-  const rsData = response.data!!;
+  const rsData = response.data!!; // 여기는 null이나 undefined가 절대 들어오지 않는다
   const pageDto = rsData.data;
-
-  //   const response = await fetch(
-  //     `http://localhost:8080/api/v1/posts?
-  //     keywordType=${keywordType}&keyword=${keyword}`
-  //   );
-
-  //   if (!response.ok) {
-  //     throw new Error("에러");
-  //   }
-
-  //   const rsData = await response.json();
-
-  //   const pageDto: PostItemPageDto = rsData.data;
 
   return (
     <div>
@@ -68,7 +64,23 @@ export default async function Page({
           defaultValue={keyword}
         />
         <input type="submit" value="검색" />
+        <label className="ml-5" htmlFor="pageSize">
+          페이지 당 행 개수 :
+        </label>
+        <select name="pageSize">
+          <option value="10">10</option>
+          <option value="30">30</option>
+          <option value="50">50</option>
+        </select>
       </form>
+
+      <div className="flex gap-3">
+        {Array.from({ length: pageDto.totalPages }, (_, i) => i + 1).map(
+          (page) => {
+            return <Link href={`/post/list/?page=${page}`}>{page}</Link>;
+          }
+        )}
+      </div>
 
       <ul>
         {pageDto.items.map((item) => {
