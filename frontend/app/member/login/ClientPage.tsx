@@ -18,6 +18,7 @@ export default function ClientPage() {
         username,
         password,
       },
+      credentials: "include",
     });
 
     if (response.error) {
