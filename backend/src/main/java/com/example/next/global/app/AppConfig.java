@@ -15,6 +15,10 @@ public class AppConfig {
     @Getter
     public static ObjectMapper objectMapper;
 
+    public static String getSiteFrontUrl() {
+        return "http://localhost:3030";
+    }
+
     @Autowired
     public void setObjectMapper(ObjectMapper objectMapper) {
         AppConfig.objectMapper = objectMapper;
