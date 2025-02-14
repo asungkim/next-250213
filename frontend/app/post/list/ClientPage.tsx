@@ -1,7 +1,10 @@
+"use client";
+
 import { components } from "@/src/lib/backend/apiV1/schema";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
-export default async function ClientPage({
+export default function ClientPage({
   rsData,
   keywordType,
   keyword,
@@ -14,6 +17,7 @@ export default async function ClientPage({
   pageSize: number;
   page: number;
 }) {
+  const router = useRouter();
   const pageDto = rsData.data;
 
   return (
@@ -29,7 +33,21 @@ export default async function ClientPage({
 
       <hr />
 
-      <form>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+
+          const formData = new FormData(e.target as HTMLFormElement);
+          const keyword = formData.get("keyword") as string;
+          const keywordType = formData.get("keywordType") as string;
+          const page = 1;
+          const pageSize = formData.get("pageSize") as string;
+
+          router.push(
+            `/post/list?keywordType=${keywordType}&keyword=${keyword}&pageSize=${pageSize}&page=${page}`
+          );
+        }}
+      >
         <select name="keywordType" defaultValue={keywordType}>
           <option value="title">제목</option>
           <option value="content">내용</option>
