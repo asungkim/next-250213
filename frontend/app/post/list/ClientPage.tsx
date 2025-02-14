@@ -89,12 +89,14 @@ export default function ClientPage({
         {pageDto.items.map((item) => {
           return (
             <li className="border-2 border-red-500 my-2 p-2" key={item.id}>
-              <div>id : {item.id}</div>
-              <div>title : {item.title}</div>
-              <div>authorId : {item.authorId}</div>
-              <div>authorName : {item.authorName}</div>
-              <div>published : {`${item.published}`}</div>
-              <div>listed : {`${item.listed}`}</div>
+              <Link href={`/post/${item.id}`}>
+                <div>id : {item.id}</div>
+                <div>title : {item.title}</div>
+                <div>authorId : {item.authorId}</div>
+                <div>authorName : {item.authorName}</div>
+                <div>published : {`${item.published}`}</div>
+                <div>listed : {`${item.listed}`}</div>
+              </Link>
             </li>
           );
         })}
