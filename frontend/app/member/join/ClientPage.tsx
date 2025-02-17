@@ -1,14 +1,18 @@
 "use client";
 
 import client from "@/src/lib/client";
+import { useRouter } from "next/navigation";
 
 export default function ClientPage() {
-  async function login(e: React.FormEvent<HTMLFormElement>) {
+  const router = useRouter();
+
+  async function join(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     const form = e.target as HTMLFormElement;
     const username = form.username.value;
     const password = form.password.value;
+    const nickname = form.password.value;
 
     if (username.trim().length === 0) {
       alert("아이디를 입력해주세요.");
@@ -20,10 +24,16 @@ export default function ClientPage() {
       return;
     }
 
-    const response = await client.POST("/api/v1/members/login", {
+    if (nickname.trim().length === 0) {
+      alert("닉네임을 입력해주세요.");
+      return;
+    }
+
+    const response = await client.POST("/api/v1/members/join", {
       body: {
         username,
         password,
+        nickname,
       },
       credentials: "include",
     });
@@ -33,16 +43,15 @@ export default function ClientPage() {
       return;
     }
 
-    alert("로그인 성공하였습니다.");
-    // router.push(`/post/list`);
-    window.location.href = "/post/list";
+    alert("회원가입 성공하였습니다.");
+    router.push(`/member/login`);
   }
 
   return (
     <>
-      <div>로그인 페이지</div>
+      <div>회원가입 페이지</div>
 
-      <form onSubmit={login} className="flex flex-col w-1/4 gap-3">
+      <form onSubmit={join} className="flex flex-col w-1/4 gap-3">
         <input
           type="text"
           name="username"
@@ -55,7 +64,13 @@ export default function ClientPage() {
           placeholder="패스워드 입력"
           className="border-2 border-black"
         />
-        <input type="submit" value="로그인" />
+        <input
+          type="text"
+          name="nickname"
+          placeholder="닉네임 입력"
+          className="border-2 border-black"
+        />
+        <input type="submit" value="회원가입" />
       </form>
     </>
   );
