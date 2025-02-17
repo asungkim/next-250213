@@ -1,6 +1,6 @@
 import client from "@/src/lib/client";
 import ClientPage from "./ClientPage";
-import { cookies } from "next/dist/server/request/cookies";
+import { cookies } from "next/headers";
 
 export default async function Page({
   params,
