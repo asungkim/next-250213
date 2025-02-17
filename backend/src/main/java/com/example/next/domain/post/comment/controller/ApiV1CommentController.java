@@ -89,7 +89,7 @@ public class ApiV1CommentController {
         return new CommentDto(comment);
     }
 
-    record ModifyReqBody(String content) {
+    record CommentModifyReqBody(String content) {
     }
 
     @PutMapping("/{id}")
@@ -98,7 +98,7 @@ public class ApiV1CommentController {
             summary = "댓글 수정",
             description = "게시글의 댓글을 수정합니다."
     )
-    public RsData<Empty> modify(@PathVariable long postId, @PathVariable long id, @RequestBody ModifyReqBody body) {
+    public RsData<Empty> modify(@PathVariable long postId, @PathVariable long id, @RequestBody CommentModifyReqBody body) {
         Member writer = rq.getActor();
 
         Post post = postService.getItem(postId).orElseThrow(

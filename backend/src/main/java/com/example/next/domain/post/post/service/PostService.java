@@ -8,6 +8,7 @@ import com.example.next.domain.post.post.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -71,7 +72,8 @@ public class PostService {
     }
 
     public Page<Post> getListedItems(int page, int pageSize, SearchKeywordType keywordType, String keyword) {
-        PageRequest pageRequest = PageRequest.of(page - 1, pageSize);
+        PageRequest pageRequest = PageRequest.of(page - 1, pageSize,
+                Sort.by(Sort.Direction.DESC,"id"));
 
         String likeKeyword = "%" + keyword + "%";
 
@@ -83,7 +85,8 @@ public class PostService {
     }
 
     public Page<Post> getMines(Member author, int page, int pageSize, SearchKeywordType keywordType, String keyword) {
-        PageRequest pageRequest = PageRequest.of(page - 1, pageSize);
+        PageRequest pageRequest = PageRequest.of(page - 1, pageSize,
+                Sort.by(Sort.Direction.DESC,"id"));
         String likeKeyword = "%" + keyword + "%";
 
         if (SearchKeywordType.content == keywordType) {
