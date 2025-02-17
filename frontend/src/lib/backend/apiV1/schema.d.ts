@@ -282,10 +282,6 @@ export interface components {
         MemberDto: {
             /** Format: int64 */
             id: number;
-            /** Format: date-time */
-            createdDate: string;
-            /** Format: date-time */
-            modifiedDate: string;
             nickname: string;
         };
         RsDataLoginResBody: {
