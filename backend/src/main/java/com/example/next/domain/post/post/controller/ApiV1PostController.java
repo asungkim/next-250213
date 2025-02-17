@@ -155,7 +155,10 @@ public class ApiV1PostController {
         );
     }
 
-    record ModifyReqBody(@NotBlank String title, @NotBlank String content) {
+    record PostModifyReqBody(@NotBlank String title,
+                         @NotBlank String content,
+                         boolean published,
+                         boolean listed) {
     }
 
     @PutMapping("{id}")
@@ -164,7 +167,7 @@ public class ApiV1PostController {
             summary = "글 수정",
             description = "작성자와 관리자만 글 수정 가능"
     )
-    public RsData<PostWithContentDto> modify(@Valid @RequestBody ModifyReqBody body,
+    public RsData<PostWithContentDto> modify(@Valid @RequestBody PostModifyReqBody body,
                                              @PathVariable long id) {
         Member actor = rq.getActor();
 
