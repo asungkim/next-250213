@@ -228,7 +228,7 @@ export interface components {
             msg: string;
             data: Record<string, never>;
         };
-        ModifyReqBody: {
+        CommentModifyReqBody: {
             content?: string;
         };
         Empty: Record<string, never>;
@@ -236,6 +236,12 @@ export interface components {
             code: string;
             msg: string;
             data: components["schemas"]["Empty"];
+        };
+        PostModifyReqBody: {
+            title: string;
+            content: string;
+            published?: boolean;
+            listed?: boolean;
         };
         PostWithContentDto: {
             /** Format: int64 */
@@ -406,7 +412,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["ModifyReqBody"];
+                "application/json": components["schemas"]["CommentModifyReqBody"];
             };
         };
         responses: {
@@ -504,7 +510,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["ModifyReqBody"];
+                "application/json": components["schemas"]["PostModifyReqBody"];
             };
         };
         responses: {
