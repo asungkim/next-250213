@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import client from "./src/lib/client";
+import client from "./lib/client";
 import { cookies } from "next/headers";
 
 export async function middleware(request: NextRequest) {
@@ -16,7 +16,7 @@ export async function middleware(request: NextRequest) {
       const expTimestamp = payload.exp * 1000;
       isExpired = Date.now() > expTimestamp;
     } catch (e) {
-      console.log("파싱 중 오류 발생 : ", e);
+      console.error("파싱 중 오류 발생 : ", e);
     }
   }
 
@@ -36,6 +36,8 @@ export async function middleware(request: NextRequest) {
 
     const spirngCookie = response.response.headers.getSetCookie();
     nextResponse.headers.set("set-cookie", String(spirngCookie));
+
+    return nextResponse;
   }
 
   if (!isLogin && isProtectedRoute(request.nextUrl.pathname)) {
