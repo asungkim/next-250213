@@ -27,7 +27,12 @@ public class Rq {
 
     public void setLogin(Member writer) {
 
-        UserDetails user = new SecurityUser(writer.getId(), writer.getUsername(), "", writer.getAuthorities());
+        UserDetails user = new SecurityUser(
+                writer.getId(),
+                writer.getUsername(),
+                "",
+                writer.getNickname(),
+                writer.getAuthorities());
 
         // 인증 정보 저장소
         SecurityContextHolder.getContext().setAuthentication(
@@ -52,6 +57,7 @@ public class Rq {
         return Member.builder()
                 .id(user.getId())
                 .username(user.getUsername())
+                .nickname(user.getNickname())
                 .build();
     }
 

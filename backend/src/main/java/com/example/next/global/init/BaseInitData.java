@@ -77,7 +77,7 @@ public class BaseInitData {
         }
 
         for (int i = 101; i <= 200; i++) {
-            postService.write(user1, "title" + i, "content" + i, i % 5 != 0, i % 6 != 0);
+            postService.write(user2, "title" + i, "content" + i, i % 5 != 0, i % 6 != 0);
         }
 
     }
