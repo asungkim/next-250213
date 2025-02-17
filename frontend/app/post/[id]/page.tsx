@@ -24,22 +24,11 @@ export default async function Page({
     },
   });
 
-  const fetchMe = await client.GET("/api/v1/members/me", {
-    headers: {
-      cookie: (await cookies()).toString(),
-    },
-  });
-
-  if (fetchMe.error) {
-    return <div>{fetchMe.error.msg}</div>;
-  }
-
   if (response.error) {
     return <div>{response.error.msg}</div>;
   }
 
   const post = response.data.data;
-  const me = fetchMe.data.data;
 
-  return <ClientPage post={post} me={me} />;
+  return <ClientPage post={post} />;
 }

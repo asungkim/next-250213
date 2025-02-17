@@ -1,5 +1,6 @@
 import client from "@/src/lib/client";
 import ClientPage from "./ClientPage";
+import { cookies } from "next/dist/server/request/cookies";
 
 export default async function Page({
   params,
@@ -16,7 +17,9 @@ export default async function Page({
         id,
       },
     },
-    credentials: "include",
+    headers: {
+      cookie: (await cookies()).toString(),
+    },
   });
 
   if (response.error) {
@@ -24,6 +27,7 @@ export default async function Page({
   }
 
   const post = response.data.data;
+  console.log(post.authorName);
 
   return <ClientPage post={post} />;
 }

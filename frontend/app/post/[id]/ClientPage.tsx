@@ -5,10 +5,8 @@ import Link from "next/link";
 
 export default function ClientPage({
   post,
-  me,
 }: {
   post: components["schemas"]["PostWithContentDto"];
-  me: components["schemas"]["MemberDto"];
 }) {
   return (
     <>
@@ -25,8 +23,11 @@ export default function ClientPage({
       </div>
 
       <div>
-        {me.id === post.authorId && (
-          <Link href={`/post/edit/${post.id}`}>수정</Link>
+        {post.canActorHandle && (
+          <div>
+            <Link href={`/post/edit/${post.id}`}>수정</Link>
+            <Link href={`/post/delete/${post.id}`}>삭제</Link>
+          </div>
         )}
       </div>
     </>
