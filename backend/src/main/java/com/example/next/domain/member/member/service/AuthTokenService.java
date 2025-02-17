@@ -22,7 +22,9 @@ public class AuthTokenService {
         return Ut.Jwt.createToken(
                 keyString,
                 expireSeconds,
-                Map.of("id", member.getId(), "username", member.getUsername())
+                Map.of("id", member.getId(),
+                        "username", member.getUsername(),
+                        "nickname", member.getNickname())
         );
 
     }
@@ -38,9 +40,10 @@ public class AuthTokenService {
 
         Number idNo = (Number) payLoad.get("id");
         long id = idNo.longValue();
-
         String username = (String) payLoad.get("username");
+        String nickname = (String) payLoad.get("nickname");
 
-        return Map.of("id", id, "username", username);
+
+        return Map.of("id", id, "username", username, "nickname", nickname);
     }
 }
