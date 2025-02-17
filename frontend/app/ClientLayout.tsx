@@ -20,6 +20,7 @@ export default function ClientLayout({
           <Link href="/">메인</Link>
           <Link href="/about">소개</Link>
           <Link href="/post/list">글 목록</Link>
+          <Link href="/post/write">글 작성</Link>
           {!isLogined && <Link href="/member/login">로그인</Link>}
           {isLogined && (
             <Link
