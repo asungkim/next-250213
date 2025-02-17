@@ -2,6 +2,7 @@ import createClient from "openapi-fetch";
 import ClientPage from "./ClientPage";
 import { paths } from "@/src/lib/backend/apiV1/schema";
 import client from "@/src/lib/client";
+import { cookies } from "next/headers";
 
 export default async function Page({
   params,
@@ -10,7 +11,7 @@ export default async function Page({
     id: number;
   };
 }) {
-  const id = await params.id;
+  const { id } = await params;
 
   const response = await client.GET("/api/v1/posts/{id}", {
     params: {
@@ -18,7 +19,9 @@ export default async function Page({
         id,
       },
     },
-    credentials: "include",
+    headers: {
+      cookie: (await cookies()).toString(),
+    },
   });
 
   if (response.error) {
