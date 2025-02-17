@@ -21,7 +21,7 @@ export default function ClientPage({
       </div>
 
       <div>
-        <Link href="">수정</Link>
+        <Link href={`/post/edit/${post.id}`}>수정</Link>
       </div>
     </>
   );
