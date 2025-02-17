@@ -5,8 +5,10 @@ import Link from "next/link";
 
 export default function ClientPage({
   post,
+  me,
 }: {
   post: components["schemas"]["PostWithContentDto"];
+  me: components["schemas"]["MemberDto"];
 }) {
   return (
     <>
@@ -14,6 +16,8 @@ export default function ClientPage({
         <div>번호 : {post.id}</div>
         <div>제목 : {post.title}</div>
         <div>내용 : {post.content}</div>
+        <div>작성자 번호 : {post.authorId}</div>
+        <div>작성자 닉네임 : {post.authorName}</div>
         <div>등록일 : {post.createdDate}</div>
         <div>수정일 : {post.modifiedDate}</div>
         <div>공개 여부 : {`${post.published}`}</div>
@@ -21,7 +25,9 @@ export default function ClientPage({
       </div>
 
       <div>
-        <Link href={`/post/edit/${post.id}`}>수정</Link>
+        {me.id === post.authorId && (
+          <Link href={`/post/edit/${post.id}`}>수정</Link>
+        )}
       </div>
     </>
   );
