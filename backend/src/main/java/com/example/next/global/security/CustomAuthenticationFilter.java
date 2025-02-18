@@ -46,6 +46,8 @@ public class CustomAuthenticationFilter extends OncePerRequestFilter {
                 return null;
             }
 
+
+
             return new AuthToken(tokenBits[0], tokenBits[1]);
         }
 
