@@ -12,6 +12,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHouse, faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 
 export default function ClientLayout({
   children,
@@ -42,9 +44,12 @@ export default function ClientLayout({
   return (
     <html lang="en" className={`${fontVariable}`}>
       <body className={`min-h-[100dvh] flex flex-col ${fontClassName}`}>
-        <header className="flex gap-3">
+        <header className="flex justify-end gap-3 px-4">
           <DropdownMenu>
-            <DropdownMenuTrigger>Home</DropdownMenuTrigger>
+            <DropdownMenuTrigger>
+              <FontAwesomeIcon icon={faHouse} />
+              Home
+            </DropdownMenuTrigger>
             <DropdownMenuContent>
               <DropdownMenuLabel>{me.nickname}</DropdownMenuLabel>
               <DropdownMenuSeparator />
