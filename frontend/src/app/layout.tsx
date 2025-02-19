@@ -1,20 +1,17 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 import ClientLayout from "./ClientLayout";
 import client from "@/src/lib/client";
 import { cookies } from "next/headers";
 import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
+import localFont from "next/font/local";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const pretendard = localFont({
+  src: "./../../node_modules/pretendard/dist/web/variable/woff2/PretendardVariable.woff2",
+  display: "swap",
+  weight: "45 920",
+  variable: "--font-pretendard",
 });
 
 export const metadata: Metadata = {
@@ -40,7 +37,15 @@ export default async function RootLayout({
         nickname: "",
       };
 
-  return <ClientLayout me={me}>{children}</ClientLayout>;
+  return (
+    <ClientLayout
+      me={me}
+      fontVariable={pretendard.variable}
+      fontClassName={pretendard.className}
+    >
+      {children}
+    </ClientLayout>
+  );
 }
 
 function parseAccessToken(accessToken: RequestCookie | undefined) {
