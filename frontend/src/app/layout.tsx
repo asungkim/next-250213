@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Link from "next/link";
 import ClientLayout from "./ClientLayout";
-import client from "@/src/lib/client";
 import { cookies } from "next/headers";
 import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
 import localFont from "next/font/local";
+import { config } from "@fortawesome/fontawesome-svg-core";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faThumbsUp } from "@fortawesome/free-regular-svg-icons";
 
 const pretendard = localFont({
   src: "./../../node_modules/pretendard/dist/web/variable/woff2/PretendardVariable.woff2",
@@ -13,6 +15,8 @@ const pretendard = localFont({
   weight: "45 920",
   variable: "--font-pretendard",
 });
+
+config.autoAddCss = false;
 
 export const metadata: Metadata = {
   title: "Create Next App",
